@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #00ff41; /* Neon Green */
+  --background-color: #0b0c10;
+  --dark-color: #1f2833;
+  --light-color: #c5c6c7;
+  --danger-color: #ff4d4d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Fira Code', monospace;
+  background-color: var(--background-color);
+  color: var(--light-color);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--primary-color);
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+/* Form Styling */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='url'],
+input[type='number'],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  background: var(--dark-color);
+  border: 1px solid var(--primary-color);
+  color: var(--light-color);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.btn {
+  display: inline-block;
+  background: var(--dark-color);
+  color: var(--primary-color);
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: var(--primary-color);
+  color: var(--dark-color);
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--dark-color);
+}
+
+/* Status Badges */
+.badge {
+    padding: 0.2rem 0.7rem;
+    border-radius: 5px;
+    color: #fff;
+    margin: 0 0.5rem;
+}
+.badge-awarded { background: gold; color: #333; }
+.badge-resolved { background: #28a745; }
+.badge-triaged { background: #17a2b8; }
+.badge-pending { background: #6c757d; }
+.badge-duplicate { background: #ffc107; color: #333; }
+/* Spinner Styling */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid var(--dark-color); /* The 'track' of the spinner */
+  border-top-color: var(--primary-color); /* The moving part of the spinner */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Add to existing .badge styles */
+.badge-informative { background: #6f42c1; } /* Purple */
+.badge-n-a { background: #343a40; } /* Dark Grey */

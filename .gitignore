@@ -1,0 +1,11 @@
+# Backend Specific
+/backend/node_modules
+/backend/.env
+
+# Frontend Specific
+/frontend/node_modules
+/frontend/build
+
+# General
+.DS_Store
+npm-debug.log*
