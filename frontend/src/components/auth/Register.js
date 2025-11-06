@@ -39,7 +39,7 @@ const Register = () => {
 
         try {
             const newUser = { username, email, password };
-            await axios.post('http://localhost:5000/api/auth/register', newUser);
+            await axios.post('http://localhost:3000/api/auth/register', newUser);
             
             // On success, show a message and immediately redirect
             setAlert('Registration successful! Please log in.', 'success');
