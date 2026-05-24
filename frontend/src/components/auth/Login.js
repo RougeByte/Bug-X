@@ -1,12 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext'; 
 
 const Login = () => {
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
+    const alertContext = useContext(AlertContext);
 
     const { login, isAuthenticated, error, clearErrors } = authContext;
+    const { setAlert } = alertContext;
 
     useEffect(() => {
         // This is the correct logic. When isAuthenticated becomes true, navigate.
@@ -15,7 +18,7 @@ const Login = () => {
         }
 
         if (error) {
-            console.error(error); // Show an alert here
+            setAlert(error, 'danger'); // Show an alert here
             clearErrors();
         }
         // eslint-disable-next-line

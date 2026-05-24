@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
+import API_URL from '../../utils/api';
 
 // A helper function to set the auth token in global headers
 const setAuthToken = token => {
@@ -32,7 +33,7 @@ const AuthState = props => {
         }
 
         try {
-            const res = await axios.get('/api/auth/user');
+            const res = await axios.get(`${API_URL}/api/auth/user`);
             dispatch({ type: 'USER_LOADED', payload: res.data });
         } catch (err) {
             dispatch({ type: 'AUTH_ERROR' });
@@ -43,7 +44,7 @@ const AuthState = props => {
     const login = async formData => {
         console.log('%c[AuthState] Attempting to log in...', 'color: #ff9900', formData);
         try {
-            const res = await axios.post('/api/auth/login', formData);
+            const res = await axios.post(`${API_URL}/api/auth/login`, formData);
             
             // THE CRUCIAL FIX:
             // Immediately set the token in the headers for the next request.
@@ -69,6 +70,8 @@ const AuthState = props => {
     // Logout
     const logout = () => dispatch({ type: 'LOGOUT' });
 
+    const clearErrors = () => dispatch({ type: 'CLEAR_ERRORS' });
+
     return (
         <AuthContext.Provider
             value={{
@@ -79,12 +82,14 @@ const AuthState = props => {
                 error: state.error,
                 loadUser,
                 login,
-                logout
+                logout,
+                clearErrors
             }}
         >
             {props.children}
         </AuthContext.Provider>
     );
+    
 };
 
 export default AuthState;

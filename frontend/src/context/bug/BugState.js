@@ -3,6 +3,7 @@ import axios from 'axios';
 import BugContext from './bugContext';
 import bugReducer from './bugReducer';
 import AlertContext from '../alert/alertContext';
+import API_URL from '../../utils/api';
 
 const BugState = (props) => {
   const initialState = {
@@ -18,7 +19,7 @@ const BugState = (props) => {
 
   const getBugs = async () => {
     try {
-      const res = await axios.get('/api/bugs');
+      const res = await axios.get(`${API_URL}/api/bugs`);
       dispatch({ type: 'GET_BUGS', payload: res.data });
     } catch (err) {
       dispatch({ type: 'BUG_ERROR', payload: err.response.data.msg });
@@ -28,7 +29,7 @@ const BugState = (props) => {
   const addBug = async (bug) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json' } };
-      const res = await axios.post('/api/bugs', bug, config);
+      const res = await axios.post(`${API_URL}/api/bugs`, bug, config);
       dispatch({ type: 'ADD_BUG', payload: res.data });
     } catch (err) {
       dispatch({ type: 'BUG_ERROR', payload: err.response.data.msg });
@@ -37,7 +38,7 @@ const BugState = (props) => {
 
   const deleteBug = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/bugs/${id}`);
+      await axios.delete(`${API_URL}/api/bugs/${id}`);
       dispatch({ type: 'DELETE_BUG', payload: id });
     } catch (err) {
       dispatch({ type: 'BUG_ERROR', payload: err.response?.data?.msg || 'Delete failed' });
@@ -56,7 +57,7 @@ const BugState = (props) => {
   const updateBug = async (bug) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json' } };
-      const res = await axios.put(`http://localhost:3000/api/bugs/${bug._id}`, bug, config);
+      const res = await axios.put(`${API_URL}/api/bugs/${bug._id}`, bug, config);
       dispatch({ type: 'UPDATE_BUG', payload: res.data });
     } catch (err) {
       dispatch({ type: 'BUG_ERROR', payload: err.response.data.msg });

@@ -35,7 +35,7 @@ export default (state, action) => {
         case 'CLEAR_ERRORS':
             return {
                 ...state,
-                error: null
+                error: null // This sets the error message back to null
             };
         default:
             return state;

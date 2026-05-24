@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AlertContext from '../../context/alert/alertContext'; // Make sure you have alert context for feedback
+import API_URL from '../../utils/api';
 
 // Assuming you have an Alert component
 const Alert = ({ message, type }) => (
@@ -39,7 +40,7 @@ const Register = () => {
 
         try {
             const newUser = { username, email, password };
-            await axios.post('/api/auth/register', newUser);
+            await axios.post(`${API_URL}/api/auth/register`, newUser);
             
             // On success, show a message and immediately redirect
             setAlert('Registration successful! Please log in.', 'success');
