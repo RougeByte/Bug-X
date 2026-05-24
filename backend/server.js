@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors({
     origin: [
         'http://localhost:3000',
-        'https://your-frontend-name.onrender.com'
+        'https://bugx-frontend.onrender.com'
     ],
     credentials: true
 }));
