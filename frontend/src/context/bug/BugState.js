@@ -18,7 +18,7 @@ const BugState = (props) => {
 
   const getBugs = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/bugs');
+      const res = await axios.get('/api/bugs');
       dispatch({ type: 'GET_BUGS', payload: res.data });
     } catch (err) {
       dispatch({ type: 'BUG_ERROR', payload: err.response.data.msg });
@@ -28,7 +28,7 @@ const BugState = (props) => {
   const addBug = async (bug) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json' } };
-      const res = await axios.post('http://localhost:3000/api/bugs', bug, config);
+      const res = await axios.post('/api/bugs', bug, config);
       dispatch({ type: 'ADD_BUG', payload: res.data });
     } catch (err) {
       dispatch({ type: 'BUG_ERROR', payload: err.response.data.msg });

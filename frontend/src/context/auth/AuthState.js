@@ -32,7 +32,7 @@ const AuthState = props => {
         }
 
         try {
-            const res = await axios.get('http://localhost:3000/api/auth/user');
+            const res = await axios.get('/api/auth/user');
             dispatch({ type: 'USER_LOADED', payload: res.data });
         } catch (err) {
             dispatch({ type: 'AUTH_ERROR' });
@@ -43,7 +43,7 @@ const AuthState = props => {
     const login = async formData => {
         console.log('%c[AuthState] Attempting to log in...', 'color: #ff9900', formData);
         try {
-            const res = await axios.post('http://localhost:3000/api/auth/login', formData);
+            const res = await axios.post('/api/auth/login', formData);
             
             // THE CRUCIAL FIX:
             // Immediately set the token in the headers for the next request.
