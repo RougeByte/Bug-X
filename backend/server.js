@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const path = require('path');
+
 
 dotenv.config();
 
@@ -27,15 +27,7 @@ app.use(cors({
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/bugs', require('./routes/bugs'));
 
-if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    app.use(express.static('../frontend/build'));
 
-    // Serve the index.html file for all other routes
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
-    });
-}
 
 const PORT = process.env.PORT || 5000;
 
